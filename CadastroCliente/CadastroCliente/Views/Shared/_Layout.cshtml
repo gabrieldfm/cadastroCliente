@@ -6,8 +6,14 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
+    <input type="hidden" id="success" value="@TempData["success"]" />
+    <input type="hidden" id="info" value="@TempData["info"]" />
+    <input type="hidden" id="warning" value="@TempData["warning"]" />
+    <input type="hidden" id="error" value="@TempData["error"]" />
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,7 +27,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Cadastrar funcionário", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Cadastrar empresa", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Cadastrar empresa", "Cadastrar", "Empresa")</li>
                     <li>@Html.ActionLink("Relatório", "Index", "Home")</li>
                 </ul>
             </div>
@@ -35,7 +41,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
