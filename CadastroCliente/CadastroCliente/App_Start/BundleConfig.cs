@@ -11,6 +11,7 @@ namespace CadastroCliente
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.mask.js",
+                        "~/Scripts/toastr.js",
                         "~/Scripts/App/appScript.js"
                         ));
 
@@ -27,7 +28,8 @@ namespace CadastroCliente
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/toastr.css"));
         }
     }
 }

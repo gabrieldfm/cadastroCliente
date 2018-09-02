@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Cadastrar funcionário";
+}
+@model CadastroCliente.Models.ViewModels.FuncionarioViewModel
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationMessage("funcionario.CpfInvalido")
+    @Html.ValidationMessage("funcionario.Rg")
+    @Html.ValidationMessage("funcionario.CnpjInvalido")
+    @Html.ValidationMessage("funcionario.Menor")
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Cadastrar Funcionário</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div style="padding-left: 17%">
+        <input type="radio" name="recebeOpcao" id="pf" checked value="1">
+        <label style="padding-right: 2%" for="pf">Pessoa fisíca</label>
+        <input type="radio" name="recebeOpcao" id="pj" value="2">
+        <label for="pj">Pessoa jurídica</label>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CpfCnpj, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CpfCnpj, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CpfCnpj, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DtNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DtNascimento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DtNascimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmpresaID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Empresa")
+            @Html.ValidationMessageFor(model => model.EmpresaID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="divRg">
+        @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Rg, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cadastrar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index", "Home")
+</div>
+
+<script>
+    $(document).ready(function () {
+        var $campoEmpresa = $("#Empresa");
+        $campoEmpresa.addClass('form-control');
+
+        var $radio = $('input[type="radio"]');
+        changeMask($radio.val());
+    });
+
+    $('input[type="radio"]').click(function () {
+        if ($(this).is(':checked')) {
+            changeMask($(this).val());
+        }
+    });
+
+    function changeMask(valor) {
+        var $campoCnpjCpf = $("#CpfCnpj");
+        var $rg = $("#divRg");
+        if (valor == 1) {
+            $campoCnpjCpf.mask('000.000.000-00');
+            $rg.css('visibility', 'visible');
+        }
+        else {
+            $campoCnpjCpf.mask('00.000.000/0000-00');
+            $rg.css('visibility', 'hidden');
+        }
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

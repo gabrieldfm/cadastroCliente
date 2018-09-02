@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CadastroCliente.Models
 {
@@ -18,8 +19,10 @@ namespace CadastroCliente.Models
         [Required]
         public string Telefone { get; set; }
         public string Rg { get; set; }
+
         [Required]
-        public virtual Empresa Empresa { get; set; }
+        public Empresa Empresa { get; set; }
+
 
     }
 }

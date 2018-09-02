@@ -26,9 +26,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Cadastrar funcionário", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Funcionários<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Cadastrar funcionário", "Cadastrar", "Funcionario")</li>
+                            <li>@Html.ActionLink("Relatório", "FiltroFuncionarios", "Funcionario")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Cadastrar empresa", "Cadastrar", "Empresa")</li>
-                    <li>@Html.ActionLink("Relatório", "Index", "Home")</li>
                 </ul>
             </div>
         </div>
